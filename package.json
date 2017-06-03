@@ -1,0 +1,35 @@
+{
+  "name": "react-native-photo-upload",
+  "version": "1.0.0",
+  "description": "Cross platform photo upload component for react native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react-native-fs": "^2.3.2",
+    "react-native-image-picker": "^0.26.3",
+    "react-native-image-resizer": "^0.1.1"
+  },
+  "peerDependencies": {
+    "react": ">15.0",
+    "react-native": ">0.27"
+  },
+  "keywords": [
+    "photo",
+    "react",
+    "react-native",
+    "resizer",
+    "image",
+    "picker",
+    "base64",
+    "ios",
+    "android"
+  ],
+  "author": "Omar Khaled <omarkhaled320@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^10.0.2"
+  }
+}
