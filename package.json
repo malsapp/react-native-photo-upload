@@ -1,8 +1,12 @@
 {
   "name": "react-native-photo-upload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cross platform photo upload component for react native",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omarkhaled11/react-native-photo-upload.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +15,9 @@
     "react-native-fs": "^2.3.2",
     "react-native-image-picker": "^0.26.3",
     "react-native-image-resizer": "^0.1.1"
+  },
+  "devDependencies": {
+    "standard": "^10.0.2"
   },
   "peerDependencies": {
     "react": ">15.0",
@@ -28,8 +35,5 @@
     "android"
   ],
   "author": "Omar Khaled <omarkhaled320@hotmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "standard": "^10.0.2"
-  }
+  "license": "MIT"
 }
