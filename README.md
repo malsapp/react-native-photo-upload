@@ -2,7 +2,7 @@
 
 ![screenshot](http://g.recordit.co/egzm6lL96l.gif)
 
-This component handles all the hassle in dealing with photos in react native, it's built on top of react-native-image-picker, react-native-image-resizer and react-native-fs
+This component handles all the hassle in dealing with photos in react native, it's built on top of `react-native-image-picker`, `react-native-image-resizer` and `react-native-fs`
 it takes an image component and upon click, you get the image picker prompt, get the base64 string of the image and the image source changes to whatever image was picked.
 
 ## Installing
@@ -16,15 +16,48 @@ or
 ```
 yarn add react-native-photo-upload
 ```
+## Automatic Installation
 
-2- Then you have to link react-native-image-picker, react-native-image-resizer and react-native-fs which the component depends on
+link `react-native-image-picker`, `react-native-image-resizer` and `react-native-fs` which the component depends on
 ```
 react-native link react-native-image-picker
 react-native link react-native-image-resizer
 react-native link react-native-fs
 ```
+#### The following steps are required by `react-native-image-picker` for both Android and IOS even with automatic linking
 
-If you want to link them manually, ignore step 2 and check the docs of each library on how to link manually.
+### Android
+
+* Update the android build tools version to `2.2.+` in `android/build.gradle` (required step by `react-native-image-picker):
+```gradle
+buildscript {
+    ...
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.+' // <- USE 2.2.+ version
+    }
+    ...
+}
+...
+``` 
+
+* Update the gradle version to `2.14.1` in `android/gradle/wrapper/gradle-wrapper.properties`:
+```
+ ...
+ distributionUrl=https\://services.gradle.org/distributions/gradle-2.14.1-all.zip
+```
+
+* Add the required permissions in `AndroidManifest.xml`:
+```xml
+ <uses-permission android:name="android.permission.CAMERA" />
+ <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+```
+
+### IOS
+For iOS 10+, Add the `NSPhotoLibraryUsageDescription`, `NSCameraUsageDescription`, and `NSMicrophoneUsageDescription` (if allowing video) keys to your `Info.plist` with strings describing why your app needs these permissions. **Note: You will get a SIGABRT crash if you don't complete this step**
+
+## Manual Installation
+
+check the docs of each library on how to link manually.
 
 * [react-native-image-picker](https://github.com/react-community/react-native-image-picker)
 * [link react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer)
