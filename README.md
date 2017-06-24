@@ -1,5 +1,7 @@
 # react-native-photo-upload
 
+![screenshot](http://g.recordit.co/egzm6lL96l.gif)
+
 This component handles all the hassle in dealing with photos in react native, it's built on top of react-native-image-picker, react-native-image-resizer and react-native-fs
 it takes an image component and upon click, you get the image picker prompt, get the base64 string of the image and the image source changes to whatever image was picked.
 
@@ -76,8 +78,8 @@ If you want to link them manually, ignore step 2 and check the docs of each libr
  -----|------|------------
  containerStyle | Object | Style object for the image container
  photoPickerTitle | String | Title for the image picker prompt, default is 'Select Photo'
- height | Number | the resized image height
- width | Number | the resized image width
+ height | Number | the resized image height, default is 300
+ width | Number | the resized image width, default is 300
  format | String | The format desired of the resized image, 'JPEG' or 'PNG' default is 'JPEG'
  quality | Number | The quality of the resized image indicated by a number between 1 and 100, default is 80
  onPhotoSelect | Function | function which takes the base64 string of the new image as parameter
