@@ -32,7 +32,7 @@ If you want to link them manually, ignore step 2 and check the docs of each libr
 
  ## Usage
 
- Wrap your default image inside the PhotoUpload component, after selecting a new image from the picker, the image source will get replaced with the new image base64 string as uri
+ Wrap your default image inside the PhotoUpload component, the component wraps the image with TouchableOpacity, on press it will trigger the image picker prompt. after selecting a new image from the picker, the image source will get replaced with the new image base64 string as uri
 
  ```
   <PhotoUpload>
