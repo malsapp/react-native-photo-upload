@@ -54,6 +54,17 @@ buildscript {
 
 ### IOS
 For iOS 10+, Add the `NSPhotoLibraryUsageDescription`, `NSCameraUsageDescription`, and `NSMicrophoneUsageDescription` (if allowing video) keys to your `Info.plist` with strings describing why your app needs these permissions. **Note: You will get a SIGABRT crash if you don't complete this step**
+```
+<plist version="1.0">
+  <dict>
+    ...
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>photo</string>
+    <key>NSCameraUsageDescription</key>
+    <string>camera</string>
+  </dict>
+</plist>
+```
 
 ## Manual Installation
 
