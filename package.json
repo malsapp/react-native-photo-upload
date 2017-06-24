@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/omarkhaled11/react-native-photo-upload.git"
+    "url": "git+https://github.com/malsapp/react-native-photo-upload.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

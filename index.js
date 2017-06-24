@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, StyleSheet, TouchableOpacity, Platform } from 'react-native'
+import {
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Platform
+} from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import ImageResizer from 'react-native-image-resizer'
 import RNFS from 'react-native-fs'
@@ -50,8 +56,16 @@ export default class PhotoUpload extends React.Component {
       let { height, width, quality, format } = this.state
 
       // resize image
-      const resizedImageUri = await ImageResizer.createResizedImage(`data:image/jpeg;base64,${response.data}`, height, width, format, quality)
-      const filePath = Platform.OS === 'android' && resizedImageUri.replace ? resizedImageUri.replace('file:/data', '/data') : resizedImageUri
+      const resizedImageUri = await ImageResizer.createResizedImage(
+        `data:image/jpeg;base64,${response.data}`,
+        height,
+        width,
+        format,
+        quality
+      )
+      const filePath = Platform.OS === 'android' && resizedImageUri.replace
+        ? resizedImageUri.replace('file:/data', '/data')
+        : resizedImageUri
 
       // convert image back to base64 string
       const photoData = await RNFS.readFile(filePath, 'base64')
