@@ -7,7 +7,7 @@ it takes an image component and upon click, you get the image picker prompt, get
 
 ## Installing
 
-1- npm or yarn install
+npm or yarn install
 
 ```
 npm install react-native-photo-upload --save
