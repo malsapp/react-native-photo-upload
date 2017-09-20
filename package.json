@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react-native-fs": "^2.3.2",
-    "react-native-image-picker": "^0.26.3",
-    "react-native-image-resizer": "^0.1.1"
+    "react-native-fs": "^2.5.1",
+    "react-native-image-picker": "^0.26.7",
+    "react-native-image-resizer": "^1.0.0"
   },
   "devDependencies": {
     "standard": "^10.0.2"
