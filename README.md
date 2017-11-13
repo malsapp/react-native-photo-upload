@@ -71,7 +71,7 @@ For iOS 10+, Add the `NSPhotoLibraryUsageDescription`, `NSCameraUsageDescription
 check the docs of each library on how to link manually.
 
 * [react-native-image-picker](https://github.com/react-community/react-native-image-picker)
-* [link react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer)
+* [react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer)
 * [react-native-fs](https://github.com/itinance/react-native-fs)
 
  ## Usage
