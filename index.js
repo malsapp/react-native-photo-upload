@@ -26,7 +26,8 @@ export default class PhotoUpload extends React.Component {
     height: this.props.height || 300,
     width: this.props.width || 300,
     format: this.props.format || 'JPEG',
-    quality: this.props.quality || 80
+    quality: this.props.quality || 80,
+    buttonDisabled: false
   }
 
   options = {
@@ -38,10 +39,11 @@ export default class PhotoUpload extends React.Component {
   }
 
   openImagePicker = () => {
+    this.setState({buttonDisabled: true})
     // get image from image picker
     ImagePicker.showImagePicker(this.options, async response => {
+      this.setState({buttonDisabled: false})
       console.log('Response = ', response)
-
       if (response.didCancel) {
         console.log('User cancelled image picker')
         return
@@ -94,7 +96,10 @@ export default class PhotoUpload extends React.Component {
   render () {
     return (
       <View style={[styles.container, this.props.containerStyle]}>
-        <TouchableOpacity onPress={this.openImagePicker}>
+        <TouchableOpacity
+          onPress={this.openImagePicker}
+          disabled={this.state.buttonDisabled}
+        >
           {this.renderChildren(this.props)}
         </TouchableOpacity>
       </View>
