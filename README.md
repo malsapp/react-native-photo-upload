@@ -38,7 +38,7 @@ buildscript {
     ...
 }
 ...
-``` 
+```
 
 * Update the gradle version to `2.14.1` in `android/gradle/wrapper/gradle-wrapper.properties`:
 ```
@@ -127,5 +127,11 @@ check the docs of each library on how to link manually.
  format | String | The format desired of the resized image, 'JPEG' or 'PNG' default is 'JPEG'
  quality | Number | The quality of the resized image indicated by a number between 1 and 100, default is 80
  onPhotoSelect | Function | function which takes the base64 string of the new image as parameter
-
+ onError | Function | fires if any error occur with response
+ onTapCustomButton | Function | fires on tap custom button
+ onStart | Function | fires when user starts (useful for loading, etc)
+ onCancel | Function | fires when user cancel
+ onResponse | Function | fires on response exists
+ onRender | Function | fires after render
+ onResizedImageUri | Function | fires when image resized is ready
 
