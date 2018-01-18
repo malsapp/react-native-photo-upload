@@ -33,7 +33,8 @@ export default class PhotoUpload extends React.Component {
     height: this.props.height || 300,
     width: this.props.width || 300,
     format: this.props.format || 'JPEG',
-    quality: this.props.quality || 80
+    quality: this.props.quality || 80,
+    buttonDisabled: false
   }
 
   options = {
@@ -45,10 +46,12 @@ export default class PhotoUpload extends React.Component {
   }
 
   openImagePicker = () => {
+    this.setState({buttonDisabled: true})
     if (this.props.onStart) this.props.onStart()
 
     // get image from image picker
     ImagePicker.showImagePicker(this.options, async response => {
+      this.setState({buttonDisabled: false})
       console.log('Response = ', response)
       let rotation = 0 
       const {originalRotation} = response
@@ -127,7 +130,10 @@ export default class PhotoUpload extends React.Component {
   render() {
     return (
       <View style={[styles.container, this.props.containerStyle]}>
-        <TouchableOpacity onPress={this.openImagePicker}>
+        <TouchableOpacity
+          onPress={this.openImagePicker}
+          disabled={this.state.buttonDisabled}
+        >
           {this.renderChildren(this.props)}
         </TouchableOpacity>
       </View>
