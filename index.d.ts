@@ -27,7 +27,7 @@ declare module "react-native-photo-upload" {
     name?: string;
   }
 
-  type PhotoUploadProps = {
+  interface PhotoUploadProps = {
     /** Style object for the image container */
     containerStyle?: StyleProp<ViewStyle>;
     /** Title for the image picker prompt, default is 'Select Photo' */
@@ -56,6 +56,7 @@ declare module "react-native-photo-upload" {
     onRender?: () => void;
     /** fires when image resized is ready */
     onResizedImageUri?: (response: ImageResizerResponse) => void;
-  };
+  }
+  
   export default class PhotoUpload extends React.Component<PhotoUploadProps> {}
 }
