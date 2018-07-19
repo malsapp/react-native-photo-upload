@@ -27,6 +27,7 @@ export default class PhotoUpload extends React.Component {
     onResponse: PropTypes.func, // on response exists!
     onRender: PropTypes.func, // after render
     onResizedImageUri: PropTypes.func, // when image resized is ready
+    imagePickerOptions: PropTypes.object, // extension of react-native-image-picker options
   }
 
   state = {
@@ -37,8 +38,9 @@ export default class PhotoUpload extends React.Component {
     buttonDisabled: false
   }
 
-  options = {
+  options = {    
     title: this.props.pickerTitle || 'Select Photo',
+    ... this.props.imagePickerOptions,
     storageOptions: {
       skipBackup: true,
       path: 'images'
