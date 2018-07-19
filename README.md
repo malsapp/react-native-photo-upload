@@ -94,7 +94,23 @@ check the docs of each library on how to link manually.
   import { Image } from 'react-native'
   import PhotoUpload from 'react-native-photo-upload'
 
+  const imagePickerOptions = {
+      title: 'Select a Photo',
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo…',
+      chooseFromLibraryButtonTitle: 'Choose from Library…',
+      quality: 1.0,
+      allowsEditing: false,
+      permissionDenied: {
+        title: 'Permission denied',
+        text: 'To be able to take pictures with your camera and choose images from your library.',
+        reTryTitle: 're-try',
+        okTitle: 'I\'m sure',
+      }
+  }
+
   <PhotoUpload
+    imagePickerOptions={imagePickerOptions}
     onPhotoSelect={avatar => {
       if (avatar) {
         console.log('Image base64 string: ', avatar)
@@ -134,4 +150,5 @@ check the docs of each library on how to link manually.
  onResponse | Function | fires on response exists
  onRender | Function | fires after render
  onResizedImageUri | Function | fires when image resized is ready
+ imagePickerOptions | Object | extension of [react-native-image-picker](https://github.com/react-community/react-native-image-picker/blob/f2e55452d9823c747eb98274fa62d346972b152c/index.js) options
 
