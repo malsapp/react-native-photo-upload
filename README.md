@@ -134,4 +134,5 @@ check the docs of each library on how to link manually.
  onResponse | Function | fires on response exists
  onRender | Function | fires after render
  onResizedImageUri | Function | fires when image resized is ready
+ imagePickerProps | Object | Other props for react-native-image-picker 
 
