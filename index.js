@@ -39,7 +39,7 @@ export default class PhotoUpload extends React.Component {
   }
 
   options = {
-    title: this.props.pickerTitle || 'Select Photo',
+    title: this.props.photoPickerTitle || 'Select Photo',
     storageOptions: {
       skipBackup: true,
       path: 'images'
