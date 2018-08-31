@@ -59,9 +59,9 @@ For iOS 10+, Add the `NSPhotoLibraryUsageDescription`, `NSCameraUsageDescription
   <dict>
     ...
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>photo</string>
+    <string>YOUR_REASON_FOR_USING_USER_PHOTOS_HERE</string>
     <key>NSCameraUsageDescription</key>
-    <string>camera</string>
+    <string>YOUR_REASON_FOR_USING_USER_CAMERA_HERE</string>
   </dict>
 </plist>
 ```
