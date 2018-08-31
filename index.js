@@ -54,7 +54,7 @@ export default class PhotoUpload extends React.Component {
     // get image from image picker
     ImagePicker.showImagePicker(this.options, async response => {
       this.setState({buttonDisabled: false})
-      console.log('Response = ', response)
+
       let rotation = 0 
       const {originalRotation} = response
       
