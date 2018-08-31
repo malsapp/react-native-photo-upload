@@ -15,8 +15,8 @@ export default class PhotoUpload extends React.Component {
   static propTypes = {
     containerStyle: PropTypes.object,
     photoPickerTitle: PropTypes.string,
-    height: PropTypes.number,
-    width: PropTypes.number,
+    maxHeight: PropTypes.number,
+    maxWidth: PropTypes.number,
     format: PropTypes.string,
     quality: PropTypes.number,
     onPhotoSelect: PropTypes.func, // returns the base64 string of uploaded photo
@@ -31,10 +31,10 @@ export default class PhotoUpload extends React.Component {
   }
 
   state = {
-    height: this.props.height || 300,
-    width: this.props.width || 300,
+    maxHeight: this.props.height || 600,
+    maxWidth: this.props.width || 600,
     format: this.props.format || 'JPEG',
-    quality: this.props.quality || 80,
+    quality: this.props.quality || 100,
     buttonDisabled: false
   }
 
@@ -75,7 +75,7 @@ export default class PhotoUpload extends React.Component {
         return
       }
 
-      let { height, width, quality, format } = this.state
+      let { maxHeight, maxWidth, quality, format } = this.state
       
       //Determining rotation param
       if ( originalRotation === 90) { 
@@ -90,8 +90,8 @@ export default class PhotoUpload extends React.Component {
       // resize image
       const resizedImageUri = await ImageResizer.createResizedImage(
         `data:image/jpeg;base64,${response.data}`,
-        height,
-        width,
+        maxHeight,
+        maxWidth,
         format,
         quality,
         rotation
