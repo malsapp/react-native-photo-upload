@@ -13,7 +13,7 @@
   "dependencies": {
     "prop-types": "^15.5.10",
     "react-native-fs": "^2.5.1",
-    "react-native-image-picker": "^0.26.7",
+    "react-native-image-picker": "^0.27.1",
     "react-native-image-resizer": "^1.0.0"
   },
   "devDependencies": {
