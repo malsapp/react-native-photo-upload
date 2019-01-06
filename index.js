@@ -131,7 +131,7 @@ export default class PhotoUpload extends React.Component {
 
   render() {
     return (
-      <View style={[styles.container, this.props.containerStyle]}>
+      <View style={[this.props.containerStyle]}>
         <TouchableOpacity
           onPress={this.openImagePicker}
           disabled={this.state.buttonDisabled}
@@ -143,10 +143,3 @@ export default class PhotoUpload extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
