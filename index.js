@@ -117,7 +117,7 @@ export default class PhotoUpload extends React.Component {
 
   renderChildren = props => {
     return React.Children.map(props.children, child => {
-      if (child && child.type === Image && this.state.avatarSource) {
+      if (child && child.type.displayName.includes("Image") && this.state.avatarSource) {
         return React.cloneElement(child, {
           source: this.state.avatarSource
         })
