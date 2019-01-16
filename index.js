@@ -53,8 +53,6 @@ export default class PhotoUpload extends React.Component {
 
     // get image from image picker
     ImagePicker.showImagePicker(this.options, async response => {
-      this.setState({buttonDisabled: false})
-
       let rotation = 0 
       const {originalRotation} = response
       
@@ -64,15 +62,15 @@ export default class PhotoUpload extends React.Component {
       if (response.didCancel) {
         console.log('User cancelled image picker')
         if (this.props.onCancel) this.props.onCancel('User cancelled image picker')
-        return
+        return this.setState({ buttonDisabled: false })
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error)
         if (this.props.onError) this.props.onError(response.error)
-        return
+        return this.setState({ buttonDisabled: false })
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton)
         if (this.props.onTapCustomButton) this.props.onTapCustomButton(response.customButton)
-        return
+        return this.setState({ buttonDisabled: false })
       }
 
       let { maxHeight, maxWidth, quality, format } = this.state
@@ -107,7 +105,8 @@ export default class PhotoUpload extends React.Component {
       const photoData = await RNFS.readFile(filePath, 'base64')
       let source = { uri: resizedImageUri.uri }
       this.setState({
-        avatarSource: source
+        avatarSource: source,
+        buttonDisabled: false
       })
 
       // handle photo in props functions as data string
