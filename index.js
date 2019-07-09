@@ -15,8 +15,8 @@ export default class PhotoUpload extends React.Component {
   static propTypes = {
     containerStyle: PropTypes.object,
     photoPickerTitle: PropTypes.string,
-    maxHeight: PropTypes.number,
-    maxWidth: PropTypes.number,
+    height: PropTypes.number,
+    width: PropTypes.number,
     format: PropTypes.string,
     quality: PropTypes.number,
     onPhotoSelect: PropTypes.func, // returns the base64 string of uploaded photo
