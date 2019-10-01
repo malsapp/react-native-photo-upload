@@ -15,6 +15,7 @@ export default class PhotoUpload extends React.Component {
   static propTypes = {
     containerStyle: PropTypes.object,
     photoPickerTitle: PropTypes.string,
+    customButtons: PropTypes.array,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
     format: PropTypes.string,
@@ -48,16 +49,20 @@ export default class PhotoUpload extends React.Component {
   }
 
   openImagePicker = () => {
-    this.setState({buttonDisabled: true})
+    if (this.props.customButtons && this.props.customButtons.length) {
+      this.options.customButtons = this.props.customButtons
+    }
+
+    this.setState({ buttonDisabled: true })
     if (this.props.onStart) this.props.onStart()
 
     // get image from image picker
     ImagePicker.showImagePicker(this.options, async response => {
-      this.setState({buttonDisabled: false})
+      this.setState({ buttonDisabled: false })
 
-      let rotation = 0 
-      const {originalRotation} = response
-      
+      let rotation = 0
+      const { originalRotation } = response
+
 
       if (this.props.onResponse) this.props.onResponse(response)
 
@@ -76,16 +81,16 @@ export default class PhotoUpload extends React.Component {
       }
 
       let { maxHeight, maxWidth, quality, format } = this.state
-      
+
       //Determining rotation param
-      if ( originalRotation === 90) { 
-        rotation = 90 
-      } else if (originalRotation === 180) { 
+      if (originalRotation === 90) {
+        rotation = 90
+      } else if (originalRotation === 180) {
         //For a few images rotation is 180. 
-        rotation = -180 
-      } else if ( originalRotation === 270 )  {
+        rotation = -180
+      } else if (originalRotation === 270) {
         //When taking images with the front camera (selfie), the rotation is 270.
-        rotation = -90 
+        rotation = -90
       }
       // resize image
       const resizedImageUri = await ImageResizer.createResizedImage(
