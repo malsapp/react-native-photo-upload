@@ -5,7 +5,8 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  Platform
+  Platform,
+  PermissionsAndroid
 } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import ImageResizer from 'react-native-image-resizer'
@@ -54,7 +55,31 @@ export default class PhotoUpload extends React.Component {
     ...this.props.imagePickerProps
   }
 
-  openImagePicker = () => {
+  async requestCameraPermission(PERMISSION) {
+    try {
+      return await PermissionsAndroid.request(
+        PERMISSION
+      )
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+
+  openImagePicker = async () => {
+    let permissionCamera = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.CAMERA);
+    if (!permissionCamera) {
+      permissionCamera = await this.requestCameraPermission(PermissionsAndroid.PERMISSIONS.CAMERA)
+      if (permissionCamera !== PermissionsAndroid.RESULTS.GRANTED)
+        return false
+    }
+
+    let permissionWrite = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+    if (!permissionWrite) {
+      permissionWrite = await this.requestCameraPermission(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE)
+      if (permissionWrite !== PermissionsAndroid.RESULTS.GRANTED)
+        return false
+    }
+
     if (this.props.customButtons && this.props.customButtons.length) {
       this.options.customButtons = this.props.customButtons
     }
@@ -73,15 +98,12 @@ export default class PhotoUpload extends React.Component {
       if (this.props.onResponse) this.props.onResponse(response)
 
       if (response.didCancel) {
-        console.log('User cancelled image picker')
         if (this.props.onCancel) this.props.onCancel('User cancelled image picker')
         return
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error)
         if (this.props.onError) this.props.onError(response.error)
         return
       } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton)
         if (this.props.onTapCustomButton) this.props.onTapCustomButton(response.customButton)
         return
       }
