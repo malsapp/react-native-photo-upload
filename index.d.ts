@@ -32,6 +32,12 @@ declare module "react-native-photo-upload" {
     containerStyle?: StyleProp<ViewStyle>;
     /** Title for the image picker prompt, default is 'Select Photo' */
     photoPickerTitle?: string;
+    /** Cancel title for the image picker prompt, default is 'Cancel' */
+    cancelButtonTitle?: string;
+    /** Title from an option to take picture for the image picker prompt, default is 'Take Photo…' */
+    takePhotoButtonTitle?: string;
+    /** Title from an option to search a picture for the image picker prompt, default is 'Choose from Library…' */
+    chooseFromLibraryButtonTitle?: string;
     /** Title for the custom buttons prompt, default is 'Take Photo...' and 'Choose from Library...' */
     customButtons?: Array;
     /** the resized image height, default is 300 */

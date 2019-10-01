@@ -15,6 +15,9 @@ export default class PhotoUpload extends React.Component {
   static propTypes = {
     containerStyle: PropTypes.object,
     photoPickerTitle: PropTypes.string,
+    takePhotoButtonTitle: PropTypes.string,
+    chooseFromLibraryButtonTitle: PropTypes.string,
+    cancelButtonTitle: PropTypes.string,
     customButtons: PropTypes.array,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
@@ -41,6 +44,9 @@ export default class PhotoUpload extends React.Component {
 
   options = {
     title: this.props.photoPickerTitle || 'Select Photo',
+    cancelButtonTitle: this.props.cancelButtonTitle || 'Cancel',
+    takePhotoButtonTitle: this.props.takePhotoButtonTitle || 'Take Photo…',
+    chooseFromLibraryButtonTitle: this.props.chooseFromLibraryButtonTitle || 'Choose from Library…',
     storageOptions: {
       skipBackup: true,
       path: 'images'
