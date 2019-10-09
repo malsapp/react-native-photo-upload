@@ -2,8 +2,9 @@
 
 ![screenshot](http://g.recordit.co/egzm6lL96l.gif)
 
-This component handles all the hassle in dealing with photos in react native, it's built on top of `react-native-image-picker`, `react-native-image-resizer` and `react-native-fs`
-it takes an image component and upon click, you get the image picker prompt, get the base64 string of the image and the image source changes to whatever image was picked.
+This component handles all the hassle in dealing with photos in React Native.
+It's built on top of `react-native-image-picker`, `react-native-image-resizer` and `react-native-fs`.
+The component accepts an image component and upon click, an image picker prompt opens up. The base64 string of the image and the image source changes accordingly to the image that was picked.
 
 ## Installing
 
@@ -76,9 +77,10 @@ check the docs of each library on how to link manually.
 
  ## Usage
 
- Wrap your default image inside the PhotoUpload component, the component wraps the image with TouchableOpacity, on press it will trigger the image picker prompt. after selecting a new image from the picker, the image source will get replaced with the new image base64 string as uri
+ All you need to do is to wrap your default image inside the PhotoUpload component.
+ The component then wraps the image with TouchableOpacity - which triggers the image picker prompt on press. After selecting a new image from the picker, the image source gets replaced with the new image base64 string as uri.
 
- ```
+ ```javascript
   <PhotoUpload>
     <Image
       source={{
@@ -90,7 +92,7 @@ check the docs of each library on how to link manually.
 
  ## Example
 
- ```
+ ```javascript
   import { Image } from 'react-native'
   import PhotoUpload from 'react-native-photo-upload'
 
