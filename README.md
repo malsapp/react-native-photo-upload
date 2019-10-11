@@ -122,8 +122,8 @@ check the docs of each library on how to link manually.
  -----|------|------------
  containerStyle | Object | Style object for the image container
  photoPickerTitle | String | Title for the image picker prompt, default is 'Select Photo'
- maxHeight | Number | the resized image max height, maintains aspect ratio, default is 600
- maxWidth | Number | the resized image max width, maintains aspect ratio default is 600
+ height | Number | the resized image max height, maintains aspect ratio, default is 600
+ width | Number | the resized image max width, maintains aspect ratio default is 600
  format | String | The format desired of the resized image, 'JPEG' or 'PNG' default is 'JPEG'
  quality | Number | The quality of the resized image indicated by a number between 1 and 100, default is 100
  onPhotoSelect | Function | function which takes the base64 string of the new image as parameter
@@ -134,5 +134,4 @@ check the docs of each library on how to link manually.
  onResponse | Function | fires on response exists
  onRender | Function | fires after render
  onResizedImageUri | Function | fires when image resized is ready
- imagePickerProps | Object | Other props for react-native-image-picker 
-
+ imagePickerProps | Object | Other props for react-native-image-picker
