@@ -122,6 +122,10 @@ check the docs of each library on how to link manually.
  -----|------|------------
  containerStyle | Object | Style object for the image container
  photoPickerTitle | String | Title for the image picker prompt, default is 'Select Photo'
+ cancelButtonTitle | String | Cancel title for the image picker prompt, default is 'Cancel'
+ takePhotoButtonTitle | String | Title from an option to take picture for the image picker prompt, default is 'Take Photo…'
+ chooseFromLibraryButtonTitle | String | Title from an option to search a picture for the image picker prompt, default is 'Choose from Library…'
+ customButtons | Array | Title for the custom buttons prompt, default is 'Take Photo...' and 'Choose from Library...'
  maxHeight | Number | the resized image max height, maintains aspect ratio, default is 600
  maxWidth | Number | the resized image max width, maintains aspect ratio default is 600
  format | String | The format desired of the resized image, 'JPEG' or 'PNG' default is 'JPEG'

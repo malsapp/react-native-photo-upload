@@ -5,7 +5,8 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  Platform
+  Platform,
+  PermissionsAndroid
 } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import ImageResizer from 'react-native-image-resizer'
@@ -15,6 +16,10 @@ export default class PhotoUpload extends React.Component {
   static propTypes = {
     containerStyle: PropTypes.object,
     photoPickerTitle: PropTypes.string,
+    takePhotoButtonTitle: PropTypes.string,
+    chooseFromLibraryButtonTitle: PropTypes.string,
+    cancelButtonTitle: PropTypes.string,
+    customButtons: PropTypes.array,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
     format: PropTypes.string,
@@ -40,6 +45,9 @@ export default class PhotoUpload extends React.Component {
 
   options = {
     title: this.props.photoPickerTitle || 'Select Photo',
+    cancelButtonTitle: this.props.cancelButtonTitle || 'Cancel',
+    takePhotoButtonTitle: this.props.takePhotoButtonTitle || 'Take Photo…',
+    chooseFromLibraryButtonTitle: this.props.chooseFromLibraryButtonTitle || 'Choose from Library…',
     storageOptions: {
       skipBackup: true,
       path: 'images'
@@ -47,45 +55,70 @@ export default class PhotoUpload extends React.Component {
     ...this.props.imagePickerProps
   }
 
-  openImagePicker = () => {
-    this.setState({buttonDisabled: true})
+  async requestCameraPermission(PERMISSION) {
+    try {
+      return await PermissionsAndroid.request(
+        PERMISSION
+      )
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+
+  openImagePicker = async () => {
+    let permissionCamera = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.CAMERA);
+    if (!permissionCamera) {
+      permissionCamera = await this.requestCameraPermission(PermissionsAndroid.PERMISSIONS.CAMERA)
+      if (permissionCamera !== PermissionsAndroid.RESULTS.GRANTED)
+        return false
+    }
+
+    let permissionWrite = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+    if (!permissionWrite) {
+      permissionWrite = await this.requestCameraPermission(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE)
+      if (permissionWrite !== PermissionsAndroid.RESULTS.GRANTED)
+        return false
+    }
+
+    if (this.props.customButtons && this.props.customButtons.length) {
+      this.options.customButtons = this.props.customButtons
+    }
+
+    this.setState({ buttonDisabled: true })
     if (this.props.onStart) this.props.onStart()
 
     // get image from image picker
     ImagePicker.showImagePicker(this.options, async response => {
-      this.setState({buttonDisabled: false})
+      this.setState({ buttonDisabled: false })
 
-      let rotation = 0 
-      const {originalRotation} = response
-      
+      let rotation = 0
+      const { originalRotation } = response
+
 
       if (this.props.onResponse) this.props.onResponse(response)
 
       if (response.didCancel) {
-        console.log('User cancelled image picker')
         if (this.props.onCancel) this.props.onCancel('User cancelled image picker')
         return
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error)
         if (this.props.onError) this.props.onError(response.error)
         return
       } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton)
         if (this.props.onTapCustomButton) this.props.onTapCustomButton(response.customButton)
         return
       }
 
       let { maxHeight, maxWidth, quality, format } = this.state
-      
+
       //Determining rotation param
-      if ( originalRotation === 90) { 
-        rotation = 90 
-      } else if (originalRotation === 180) { 
+      if (originalRotation === 90) {
+        rotation = 90
+      } else if (originalRotation === 180) {
         //For a few images rotation is 180. 
-        rotation = -180 
-      } else if ( originalRotation === 270 )  {
+        rotation = -180
+      } else if (originalRotation === 270) {
         //When taking images with the front camera (selfie), the rotation is 270.
-        rotation = -90 
+        rotation = -90
       }
       // resize image
       const resizedImageUri = await ImageResizer.createResizedImage(
